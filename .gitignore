@@ -1,0 +1,10 @@
+.DS_Store
+.ipynb_checkpoints/
+*.ipynb
+
+*.shp
+*.shx
+*.dbf
+*.prj
+*.xml
+*.geojson
