@@ -1113,7 +1113,39 @@ html {
     scroll-padding-top: 110px !important;
   }
 }
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
+  }
+}
 </style>
+
 
 
 <style>
@@ -1222,7 +1254,425 @@ html {
     scroll-padding-top: 110px !important;
   }
 }
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
+  }
+}
 </style>
+
+
+
+<style>
+
+/* =========================================================
+   最終尺寸修正版：避免手機橫向爆版
+   ========================================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+body {
+  line-height: 1.7;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+/* 統一主要內容寬度 */
+section,
+#map-preview {
+  width: min(1180px, calc(100% - 48px));
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero 尺寸 */
+.hero {
+  width: 100%;
+  max-width: 100%;
+  min-height: 88vh;
+  padding: 96px 0;
+}
+
+.hero-inner {
+  width: min(920px, calc(100% - 48px));
+}
+
+/* 地圖改成按鈕另開 */
+.map-open-card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 34px;
+  border-radius: 30px;
+  background: #fffafb;
+  border: 1px solid #e3bcc7;
+  box-shadow: 0 12px 30px rgba(150, 83, 103, 0.12);
+  text-align: center;
+}
+
+.map-open-card h3 {
+  margin-top: 0;
+  margin-bottom: 34px;
+  color: #9f5268;
+  font-size: clamp(24px, 3.4vw, 42px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.45;
+}
+
+.map-button,
+.map-open-btn {
+  display: inline-block;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: #b7657d;
+  color: white;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 17px;
+  box-shadow: 0 8px 18px rgba(183, 101, 125, 0.22);
+  transition: 0.2s;
+}
+
+.map-button:hover,
+.map-open-btn:hover {
+  background: #9f5268;
+  transform: translateY(-2px);
+}
+
+/* 投票區：桌機兩欄、手機一欄 */
+.vote-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 500px));
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.vote-card {
+  width: 100%;
+  min-width: 0;
+  min-height: 330px;
+  justify-content: space-between;
+}
+
+.vote-card h3 {
+  font-size: clamp(24px, 3vw, 29px);
+  margin-bottom: 16px;
+}
+
+.vote-card .members {
+  font-size: clamp(17px, 2vw, 19px);
+  line-height: 1.7;
+}
+
+.vote-card p {
+  margin: 8px 0;
+  line-height: 1.9;
+}
+
+.vote-card p strong {
+  color: #6f4f5a;
+  font-weight: 900;
+}
+
+.vote-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 20px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MP4 影片：使用瀏覽器原生 controls
+   ========================================================= */
+
+.video-box {
+  width: 100%;
+  overflow: visible;
+  padding: 34px 30px 36px;
+}
+
+.guest-video {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+  border-radius: 22px;
+  margin: 0 auto;
+  align-self: center;
+  box-shadow: 0 8px 22px rgba(80, 40, 55, 0.18);
+}
+
+/* 平板 */
+@media (max-width: 900px) {
+  section,
+  #map-preview {
+    width: calc(100% - 40px);
+  }
+
+  .hero-inner {
+    width: calc(100% - 40px);
+  }
+
+  .vote-container {
+    grid-template-columns: 1fr;
+  }
+
+  .vote-card {
+    min-height: auto;
+  }
+
+  .map-open-card {
+    padding: 46px 28px;
+  }
+
+  .guest-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .video-box {
+    padding: 28px 22px 38px;
+  }
+
+  .guest-video {
+    max-width: 380px;
+  }
+}
+
+/* 手機 */
+@media (max-width: 700px) {
+  section,
+  #map-preview {
+    width: calc(100% - 32px);
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .hero {
+    padding: 86px 0;
+    min-height: auto;
+  }
+
+  .hero-inner {
+    width: calc(100% - 32px);
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero h2 {
+    font-size: 21px;
+  }
+
+  .hero p {
+    font-size: 16.5px;
+    line-height: 1.9;
+  }
+
+  .section-title {
+    margin-bottom: 34px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+  }
+
+  .map-open-card {
+    padding: 40px 22px;
+    border-radius: 26px;
+  }
+
+  .map-open-card h3 {
+    font-size: 30px;
+    margin-bottom: 28px;
+  }
+
+  .map-button,
+  .map-open-btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .vote-card {
+    padding: 30px 22px;
+    border-radius: 26px;
+  }
+
+  .vote-card h3 {
+    font-size: 25px;
+  }
+
+  .vote-card p {
+    font-size: 16.5px;
+  }
+
+  .vote-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
+  .video-box {
+    padding: 24px 18px 38px;
+  }
+
+  .guest-video {
+    max-width: 340px;
+    border-radius: 18px;
+  }
+}
+
+/* 超小手機 */
+@media (max-width: 420px) {
+  section,
+  #map-preview,
+  .hero-inner {
+    width: calc(100% - 24px);
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero h2 {
+    font-size: 19px;
+  }
+
+  .map-open-card {
+    padding: 36px 18px;
+  }
+
+  .map-open-card h3 {
+    font-size: 28px;
+    margin-bottom: 26px;
+  }
+
+  .vote-card {
+    padding: 28px 18px;
+  }
+
+  .vote-card h3 {
+    font-size: 23px;
+  }
+
+  .video-box {
+    padding: 22px 14px 36px;
+  }
+
+  .guest-video {
+    max-width: 320px;
+    border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
+  }
+}
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
+  }
+}
+</style>
+
 
 
 <style>
