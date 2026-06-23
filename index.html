@@ -1082,7 +1082,79 @@ blockquote {
     height: 460px;
   }
 }
+
+/* =========================================================
+   影片手機 / 平板修正：避免控制列與進度條擠壓版面
+   ========================================================= */
+
+.video-box {
+  width: 100%;
+  overflow: visible;
+  padding: 34px 30px 46px;
+}
+
+.guest-video {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  min-height: 520px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 22px;
+  margin: 0 auto;
+  align-self: center;
+}
+
+/* 平板 */
+@media (max-width: 900px) {
+  .guest-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .video-box {
+    width: 100%;
+    padding: 28px 22px 48px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 380px;
+    min-height: 560px;
+  }
+}
+
+/* 手機 */
+@media (max-width: 700px) {
+  .video-box {
+    width: 100%;
+    padding: 24px 18px 50px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 340px;
+    min-height: 500px;
+    border-radius: 18px;
+  }
+}
+
+/* 很小的手機 */
+@media (max-width: 420px) {
+  .video-box {
+    padding: 22px 14px 52px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 320px;
+    min-height: 480px;
+    border-radius: 16px;
+  }
+}
 </style>
+
 
 <style>
 
@@ -1344,7 +1416,79 @@ section,
   }
 }
 
+
+/* =========================================================
+   影片手機 / 平板修正：避免控制列與進度條擠壓版面
+   ========================================================= */
+
+.video-box {
+  width: 100%;
+  overflow: visible;
+  padding: 34px 30px 46px;
+}
+
+.guest-video {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  min-height: 520px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 22px;
+  margin: 0 auto;
+  align-self: center;
+}
+
+/* 平板 */
+@media (max-width: 900px) {
+  .guest-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .video-box {
+    width: 100%;
+    padding: 28px 22px 48px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 380px;
+    min-height: 560px;
+  }
+}
+
+/* 手機 */
+@media (max-width: 700px) {
+  .video-box {
+    width: 100%;
+    padding: 24px 18px 50px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 340px;
+    min-height: 500px;
+    border-radius: 18px;
+  }
+}
+
+/* 很小的手機 */
+@media (max-width: 420px) {
+  .video-box {
+    padding: 22px 14px 52px;
+  }
+
+  .guest-video {
+    width: 100%;
+    max-width: 320px;
+    min-height: 480px;
+    border-radius: 16px;
+  }
+}
 </style>
+
 
 </head>
 
