@@ -1084,29 +1084,43 @@ blockquote {
 }
 
 /* =========================================================
-   手機 / 平板影片修正：取消 Safari 原生控制列，避免遮住畫面
+   保留檔頭固定：往下滑時仍看得到導覽列
    ========================================================= */
 
-.no-native-controls::-webkit-media-controls {
-  display: none !important;
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
 }
 
-.no-native-controls::-webkit-media-controls-panel {
-  display: none !important;
+body {
+  padding-top: 76px !important;
 }
 
-.no-native-controls::-webkit-media-controls-play-button {
-  display: none !important;
+html {
+  scroll-padding-top: 90px !important;
 }
 
-.no-native-controls::-webkit-media-controls-timeline {
-  display: none !important;
-}
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
 
-.no-native-controls::-webkit-media-controls-current-time-display,
-.no-native-controls::-webkit-media-controls-time-remaining-display {
-  display: none !important;
+  html {
+    scroll-padding-top: 110px !important;
+  }
 }
+</style>
+
+
+<style>
+
+/* =========================================================
+   Google Drive 雲端影片 iframe 修正版
+   ========================================================= */
 
 .video-box {
   width: 100%;
@@ -1114,37 +1128,28 @@ blockquote {
   padding: 34px 30px 36px;
 }
 
-.guest-video {
-  display: block;
+.drive-video-frame {
   width: 100%;
   max-width: 360px;
   aspect-ratio: 9 / 16;
-  height: auto;
-  object-fit: contain;
-  background: #000;
+  margin: 0 auto;
   border-radius: 22px;
-  margin: 0 auto 16px;
-  align-self: center;
+  overflow: hidden;
+  background: #000;
   box-shadow: 0 8px 22px rgba(80, 40, 55, 0.18);
 }
 
-.video-play-button {
+.drive-video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
   display: block;
-  width: min(100%, 280px);
-  margin: 8px auto 0;
-  padding: 12px 22px;
-  border: none;
-  border-radius: 999px;
-  background: #b7657d;
-  color: white;
-  font-size: 16px;
-  font-weight: 850;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(183, 101, 125, 0.22);
+  background: #000;
 }
 
-.video-play-button:hover {
-  background: #9f5268;
+/* 舊的自製播放按鈕如果還殘留，直接隱藏 */
+.video-play-button {
+  display: none !important;
 }
 
 /* 平板 */
@@ -1157,7 +1162,7 @@ blockquote {
     padding: 28px 22px 38px;
   }
 
-  .guest-video {
+  .drive-video-frame {
     max-width: 380px;
   }
 }
@@ -1168,14 +1173,9 @@ blockquote {
     padding: 24px 18px 38px;
   }
 
-  .guest-video {
+  .drive-video-frame {
     max-width: 340px;
     border-radius: 18px;
-  }
-
-  .video-play-button {
-    width: min(100%, 260px);
-    font-size: 15px;
   }
 }
 
@@ -1185,9 +1185,41 @@ blockquote {
     padding: 22px 14px 36px;
   }
 
-  .guest-video {
+  .drive-video-frame {
     max-width: 320px;
     border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
   }
 }
 </style>
@@ -1195,7 +1227,10 @@ blockquote {
 
 <style>
 
-/* 最終尺寸修正版：避免手機橫向爆版 */
+/* =========================================================
+   最終尺寸修正版：避免手機橫向爆版
+   ========================================================= */
+
 html,
 body {
   width: 100%;
@@ -1235,7 +1270,7 @@ section,
   width: min(920px, calc(100% - 48px));
 }
 
-/* 地圖改成按鈕另開，不在首頁載入 iframe */
+/* 地圖改成按鈕另開 */
 .map-open-card {
   width: 100%;
   max-width: 760px;
@@ -1258,7 +1293,8 @@ section,
   line-height: 1.45;
 }
 
-.map-button {
+.map-button,
+.map-open-btn {
   display: inline-block;
   padding: 15px 34px;
   border-radius: 999px;
@@ -1271,7 +1307,8 @@ section,
   transition: 0.2s;
 }
 
-.map-button:hover {
+.map-button:hover,
+.map-open-btn:hover {
   background: #9f5268;
   transform: translateY(-2px);
 }
@@ -1320,6 +1357,30 @@ section,
   white-space: nowrap;
 }
 
+/* =========================================================
+   MP4 影片：使用瀏覽器原生 controls
+   ========================================================= */
+
+.video-box {
+  width: 100%;
+  overflow: visible;
+  padding: 34px 30px 36px;
+}
+
+.guest-video {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+  border-radius: 22px;
+  margin: 0 auto;
+  align-self: center;
+  box-shadow: 0 8px 22px rgba(80, 40, 55, 0.18);
+}
+
 /* 平板 */
 @media (max-width: 900px) {
   section,
@@ -1341,6 +1402,18 @@ section,
 
   .map-open-card {
     padding: 46px 28px;
+  }
+
+  .guest-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .video-box {
+    padding: 28px 22px 38px;
+  }
+
+  .guest-video {
+    max-width: 380px;
   }
 }
 
@@ -1393,7 +1466,8 @@ section,
     margin-bottom: 28px;
   }
 
-  .map-button {
+  .map-button,
+  .map-open-btn {
     width: 100%;
     max-width: 280px;
     text-align: center;
@@ -1416,6 +1490,15 @@ section,
     width: 100%;
     max-width: 260px;
     text-align: center;
+  }
+
+  .video-box {
+    padding: 24px 18px 38px;
+  }
+
+  .guest-video {
+    max-width: 340px;
+    border-radius: 18px;
   }
 }
 
@@ -1451,107 +1534,7 @@ section,
   .vote-card h3 {
     font-size: 23px;
   }
-}
 
-
-/* =========================================================
-   手機 / 平板影片修正：取消 Safari 原生控制列，避免遮住畫面
-   ========================================================= */
-
-.no-native-controls::-webkit-media-controls {
-  display: none !important;
-}
-
-.no-native-controls::-webkit-media-controls-panel {
-  display: none !important;
-}
-
-.no-native-controls::-webkit-media-controls-play-button {
-  display: none !important;
-}
-
-.no-native-controls::-webkit-media-controls-timeline {
-  display: none !important;
-}
-
-.no-native-controls::-webkit-media-controls-current-time-display,
-.no-native-controls::-webkit-media-controls-time-remaining-display {
-  display: none !important;
-}
-
-.video-box {
-  width: 100%;
-  overflow: visible;
-  padding: 34px 30px 36px;
-}
-
-.guest-video {
-  display: block;
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 9 / 16;
-  height: auto;
-  object-fit: contain;
-  background: #000;
-  border-radius: 22px;
-  margin: 0 auto 16px;
-  align-self: center;
-  box-shadow: 0 8px 22px rgba(80, 40, 55, 0.18);
-}
-
-.video-play-button {
-  display: block;
-  width: min(100%, 280px);
-  margin: 8px auto 0;
-  padding: 12px 22px;
-  border: none;
-  border-radius: 999px;
-  background: #b7657d;
-  color: white;
-  font-size: 16px;
-  font-weight: 850;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(183, 101, 125, 0.22);
-}
-
-.video-play-button:hover {
-  background: #9f5268;
-}
-
-/* 平板 */
-@media (max-width: 900px) {
-  .guest-bottom {
-    grid-template-columns: 1fr;
-  }
-
-  .video-box {
-    padding: 28px 22px 38px;
-  }
-
-  .guest-video {
-    max-width: 380px;
-  }
-}
-
-/* 手機 */
-@media (max-width: 700px) {
-  .video-box {
-    padding: 24px 18px 38px;
-  }
-
-  .guest-video {
-    max-width: 340px;
-    border-radius: 18px;
-  }
-
-  .video-play-button {
-    width: min(100%, 260px);
-    font-size: 15px;
-  }
-}
-
-/* 很小的手機 */
-@media (max-width: 420px) {
   .video-box {
     padding: 22px 14px 36px;
   }
@@ -1559,6 +1542,38 @@ section,
   .guest-video {
     max-width: 320px;
     border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   保留檔頭固定：往下滑時仍看得到導覽列
+   ========================================================= */
+
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+html {
+  scroll-padding-top: 90px !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 96px !important;
+  }
+
+  html {
+    scroll-padding-top: 110px !important;
   }
 }
 </style>
@@ -1728,31 +1743,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1iARHvBVyZy7PD5n0-_NxFyMiNipv3Z02/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1iARHvBVyZy7PD5n0-_NxFyMiNipv3Z02/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -1792,31 +1789,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1dfktBouc2eNeFyh_oq3sXB0lZAm-9BRR/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1dfktBouc2eNeFyh_oq3sXB0lZAm-9BRR/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -1858,31 +1837,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1SgCjXd_Fo5NbpyhH9tSgG520WouyNUC7/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1SgCjXd_Fo5NbpyhH9tSgG520WouyNUC7/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -1923,31 +1884,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1RYUHpry630ecEjOc3XbJYF248HYFQIcM/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1RYUHpry630ecEjOc3XbJYF248HYFQIcM/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -1989,31 +1932,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1l4Spw4nBFG4EEuZm7WHWBn7Jlm2QYieO/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1l4Spw4nBFG4EEuZm7WHWBn7Jlm2QYieO/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -2054,31 +1979,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/14n9LSScpxtIbPljEe8Nt3KJXTWjBfIAq/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/14n9LSScpxtIbPljEe8Nt3KJXTWjBfIAq/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -2119,31 +2026,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1rz_JxXbx5ZrJwizRPgaiC4uXODXrvJwD/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1rz_JxXbx5ZrJwizRPgaiC4uXODXrvJwD/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
@@ -2185,31 +2074,13 @@ section,
         <div class="video-box">
           <h4>嘉賓介紹影片</h4>
 
-          <video
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            class="guest-video no-native-controls"
-            onclick="this.paused ? this.play() : this.pause();">
-            <source src="https://drive.google.com/file/d/1_IwvOqRNukllJ65s5IWVjciS2ldhcIrP/preview" type="video/mp4">
-            你的瀏覽器不支援影片播放。
-          </video>
-
-          <button
-            type="button"
-            class="video-play-button"
-            onclick="
-              const v = this.previousElementSibling;
-              if (v.paused) {
-                v.play();
-                this.textContent = '暫停影片';
-              } else {
-                v.pause();
-                this.textContent = '播放影片';
-              }
-            ">
-            播放影片
-          </button>
+          <div class="drive-video-frame">
+            <iframe
+              src="https://drive.google.com/file/d/1_IwvOqRNukllJ65s5IWVjciS2ldhcIrP/preview"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
 
